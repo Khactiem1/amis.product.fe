@@ -154,6 +154,7 @@ function handleToggleChangePassword(){
   display: flex;
   align-items: center;
   outline: none;
+  z-index: 10;
   border: none;
   position: relative;
   background-color: var(--while__color);

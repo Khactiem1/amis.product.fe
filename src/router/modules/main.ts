@@ -29,6 +29,33 @@ const router: any = [
   },
   {
     /** 
+     * Trang kho
+     * Khắc Tiềm - 08.03.2023
+     * */
+    path: '/category',
+    component: () => import('../../views/main/inventory/category/CategoryPage.vue'),
+    meta: { title: 'page.category' }
+  },
+  {
+    /** 
+     * Trang kho
+     * Khắc Tiềm - 08.03.2023
+     * */
+    path: '/origin',
+    component: () => import('../../views/main/inventory/origin/OriginPage.vue'),
+    meta: { title: 'page.origin' }
+  },
+  {
+    /** 
+     * Trang kho
+     * Khắc Tiềm - 08.03.2023
+     * */
+    path: '/trademark',
+    component: () => import('../../views/main/inventory/trademark/TrademarkPage.vue'),
+    meta: { title: 'page.trademark' }
+  },
+  {
+    /** 
      * Trang không tồn tại 
      * Khắc Tiềm - 08.03.2023
      * */

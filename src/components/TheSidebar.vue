@@ -43,7 +43,7 @@
           {{ $t('page.inventory_main') }}
         </div>
       </router-link>
-      <router-link to="/test404ssssss" class="menu-sidebar_item">
+      <router-link to="/category" class="menu-sidebar_item">
         <div
           style="background-position: -117px -1628px"
           class="menu-sidebar_icon"
@@ -53,7 +53,7 @@
           {{ $t('page.deposits') }}
         </div>
       </router-link>
-      <a class="menu-sidebar_item">
+      <router-link to="/origin" class="menu-sidebar_item">
         <div
           style="background-position: -161px -1628px"
           class="menu-sidebar_icon"
@@ -62,8 +62,8 @@
         <div v-if="!showSidebar" class="menu-sidebar_item-info">
           {{ $t('page.purchase') }}
         </div>
-      </a>
-      <a class="menu-sidebar_item">
+      </router-link>
+      <router-link to="/trademark" class="menu-sidebar_item">
         <div
           style="background-position: -204px -1628px"
           class="menu-sidebar_icon"
@@ -72,8 +72,8 @@
         <div v-if="!showSidebar" class="menu-sidebar_item-info">
           {{ $t('page.sell') }}
         </div>
-      </a>
-      <a class="menu-sidebar_item dashboard-page">
+      </router-link>
+      <!-- <a class="menu-sidebar_item dashboard-page">
         <div
           style="background-position: -30px -1628px"
           class="menu-sidebar_icon"
@@ -132,7 +132,7 @@
         <div v-if="!showSidebar" class="menu-sidebar_item-info">
           {{ $t('page.price') }}
         </div>
-      </a>
+      </a> -->
     </div>
     <the-change-language></the-change-language>
   </div>
