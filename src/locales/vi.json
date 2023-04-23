@@ -264,6 +264,9 @@
       "price": "Giá thành",
       "category": "Danh mục",
       "product": "Sản phẩm",
+      "gender": "Giới tính",
+      "material": "Chất liệu",
+      "batteryLife": "Thời lượng pin",
       "trademark": "Thương hiệu"
     }
   },

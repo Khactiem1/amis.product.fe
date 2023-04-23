@@ -3,6 +3,10 @@
 		<div class="container-table_header">
       <div class="name-table">
         <h1>{{ $t('page.product') }}</h1>
+        <router-link to="/inventory" class="prev_page">
+					<div class="prev_page-icon"></div>
+					<div class="prev_page-text">{{ $t('common.back') }}</div>
+				</router-link>
       </div>
       <div class="action-table">
         <div class="btn-add">
@@ -45,6 +49,12 @@
       <base-modal-form v-if="Base.isShowModal">
         <form-product :Base="Base">
         </form-product>
+      </base-modal-form>
+      <base-modal-form v-if="Base.isShowDialog">
+        <base-import-excel :Base="Base"> </base-import-excel>
+      </base-modal-form>
+      <base-modal-form v-if="Base.isShowResultExcel">
+        <base-form-excel-result :ModuleI18n="'module.inventory'" :Base="Base"></base-form-excel-result>
       </base-modal-form>
       <base-setting v-if="Base.isShowSettingTable" :columns="Base.columnSetting" :handleShowSettingTable="Base.handleShowSettingTable"
       ></base-setting>

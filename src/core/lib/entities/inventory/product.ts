@@ -1,3 +1,4 @@
+import { Gender } from "@/core/public_api";
 import { BaseEntity } from "../base_entities";
 
 /**
@@ -55,6 +56,15 @@ export class Product extends BaseEntity{
 
   /**  Giá*/
   public price?:number = undefined ;
+
+  /** Giới tính */
+  public gender: Gender = Gender.Male;
+
+  /** Mô tả */
+  public material: string = '';
+
+  /** Mô tả */
+  public batteryLife: string = '';
 
   /**  Giá*/
   public visit?:number = undefined ;

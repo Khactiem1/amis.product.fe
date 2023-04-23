@@ -264,7 +264,10 @@
       "price": "E.Giá thành",
       "category": "E.Danh mục",
       "product": "E.Sản phẩm",
-      "trademark": "E.Thương hiệu"
+      "trademark": "E.Thương hiệu",
+      "gender": "Gender",
+      "material": "Material",
+      "batteryLife": "Battery life"
     }
   },
   "validate": {

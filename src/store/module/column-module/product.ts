@@ -1,4 +1,4 @@
-import { ModuleName, TypeFilter, TypeSearch, Header, ComparisonType, IdbDataTable } from "@/core/public_api";
+import { ModuleName, TypeFilter, TypeSearch, Header, ComparisonType, IdbDataTable, Gender } from "@/core/public_api";
 
 /**
  * Chứa các column nhân viên
@@ -24,6 +24,31 @@ let columns: Header [] = [
     'module.inventory.productName',
     "400",
     { typeSearch: TypeSearch.Text, columnSearch: "product.ProductName" , typeFilter: TypeFilter.Text, module: ModuleName.Product, headerSearch: 'module.inventory.productName'},
+  ),
+  new Header(
+    "gender",
+    "product.Gender",
+    'common.gender',
+    "120",
+    { typeSearch: TypeSearch.Number, columnSearch: "product.Gender" , typeFilter: TypeFilter.Combobox, module: ModuleName.Product, headerSearch: 'common.gender', data: [
+      { value: '', header: 'common.all' },
+      { value: Gender.Male, header: 'gender.male' },
+      { value: Gender.Female, header: 'gender.female' },
+    ], comparisonType: ComparisonType.Equal },
+  ),
+  new Header(
+    "material",
+    "product.Material",
+    'module.inventory.material',
+    "250",
+    { typeSearch: TypeSearch.Text, columnSearch: "product.Material" , typeFilter: TypeFilter.Text, module: ModuleName.Product, headerSearch: 'module.inventory.material',},
+  ),
+  new Header(
+    "batteryLife",
+    "product.BatteryLife",
+    'module.inventory.batteryLife',
+    "250",
+    { typeSearch: TypeSearch.Text, columnSearch: "product.BatteryLife" , typeFilter: TypeFilter.Text, module: ModuleName.Product, headerSearch: 'module.inventory.batteryLife',},
   ),
   new Header(
     "depotCode",
@@ -116,7 +141,10 @@ let columns: Header [] = [
 ];
 
 columns.forEach((item: Header, index)=> {
-  if(item.Field === 'isActive'){
+  if(item.Field === 'gender'){
+    columns[index].TypeFormat.IsGender = true;
+  }
+  else if(item.Field === 'isActive'){
     columns[index].TypeFormat.IsActive = true;
     return
   }
