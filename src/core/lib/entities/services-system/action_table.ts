@@ -234,6 +234,9 @@ export class TypeFormat {
   /** Format kiểu số */
   public FractionSize?: boolean = false;
 
+  /** Format HTML */
+  public HTML?: boolean = false;
+
   /** Kiểu dịch vụ */
   public IsNature?: boolean = false;
 

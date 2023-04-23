@@ -107,13 +107,6 @@ let columns: Header [] = [
     { typeSearch: TypeSearch.Text, columnSearch: "trademark.TrademarkName" , typeFilter: TypeFilter.Text, module: ModuleName.Product, headerSearch: 'module.inventory.trademarkName'},
   ),
   new Header(
-    "description",
-    "product.Description",
-    'common.description',
-    "400",
-    { typeSearch: TypeSearch.Text, columnSearch: "product.Description" , typeFilter: TypeFilter.Text, module: ModuleName.Product, headerSearch: 'common.description',},
-  ),
-  new Header(
     "price",
     "product.Price",
     'module.inventory.price',
@@ -155,6 +148,10 @@ columns.forEach((item: Header, index)=> {
   else if(item.Field === 'price'){
     columns[index].TypeFormat.FractionSize = true;
     columns[index].TypeFormat.TextAlign = 'right';
+    return
+  }
+  else if(item.Field === 'description'){
+    columns[index].TypeFormat.HTML = true;
     return
   }
 })

@@ -5,6 +5,7 @@ import i18n from './locales/i18n';
 import store from './store';
 import { registerGlobalComponents } from '@/core/global_component';
 import './assets/css/main.css';
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
 const app = createApp(App);
 

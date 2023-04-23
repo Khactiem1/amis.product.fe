@@ -84,6 +84,7 @@ const { t } = useI18n();
  */
 const props = defineProps({
   Base: { type: Grid, required: true },
+  AddItem: { type: Function, default: () => {} },
 })
 
 /**
@@ -164,6 +165,7 @@ const callApiForm = async (api: any, stateForm: string = '') => {
   await props.Base.apiService.callApi(api, origin.value ,async (response: any) => { 
     if (props.Base.StateForm === ActionTable.Add || props.Base.StateForm === ActionTable.Replication){
       props.Base.store.dispatch(`${props.Base.Module}/addRecordAction`, { ...origin.value, originID: response });
+      props.AddItem({ ...origin.value, originID: response });
     }
     else{
       props.Base.store.dispatch(`${props.Base.Module}/editRecordAction`, { ...origin.value, originID: response });

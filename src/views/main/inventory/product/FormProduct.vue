@@ -1,64 +1,221 @@
 <template>
-	<div class="modal-body">
-    <div class="form form_product_in">
-      <div class="form-header">
-        <div class="modal-title">
-          <h2>{{ Base.StateForm === ActionTable.Add ? $t('common.add') 
-          : Base.StateForm === ActionTable.Replication ? $t('common.replication') 
-          : $t('common.edit') }}</h2>
-        </div>
-        <div class="modal-close">
-          <a href="/feature-built" target="_blank" class="modal-icon modal-icon_help" :content="$t('common.support') + ' F1'"></a>
-          <div @click="handleCloseModal()" class="modal-icon modal-icon_close" :content="$t('common.close') + ' ESC'"
-          ></div>
-        </div>
-      </div>
-      <div class="form-container">
+	<div class="modal-body" :class="{ active : isShowFullModal }">
+		<div class="form form_product_in">
+			<div class="form-header">
+				<div class="modal-title">
+					<h2>{{ Base.StateForm === ActionTable.Add ? $t('common.add_record', {module: $t(`module.inventory.inventoryItem_small`) }) 
+          : Base.StateForm === ActionTable.Replication ? $t('common.replication_record', {module: $t(`module.inventory.inventoryItem_small`) }) 
+          : $t('common.edit_record', {module: $t(`module.inventory.inventoryItem_small`) }) }}</h2>
+					<div class="form-title">
+						<div class="nature">
+							<div class="form-title_image form-goods">
+							</div>
+							<div class="form-title_header">
+								{{ $t('module.inventory.goods') }}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-close">
+					<a href="/feature-built" target="_blank" class="modal-icon modal-icon_help" :content="$t('common.support') + ' F1'"></a>
+          <div @click="handleCloseModal()" class="modal-icon modal-icon_close" :content="$t('common.close') + ' ESC'"></div>
+				</div>
+			</div>
+			<div class="form-container">
+				<div class="form-detail flex-center">
+					<div class="form-item form-item_left">
+						<button ref="focusLoopTop" class="focus-loop"></button>
+						<div class="form-item_input">
+							<div class="form-group ms-big">
+								<base-input
+									ref="inputFocus"
+									:required="true"
+									:focus="true"
+									:type="'text'"
+									:maxLength="255"
+                  :messageValid="t('validate.empty', { field: t('module.inventory.productName') })"
+									:label="$t('common.name')"
+									v-model="product.productName"
+									:class="{ 'is-valid': isValid && product.productName == '' }"
+								></base-input>
+							</div>
+						</div>
+						<div class="form-item_input">
+							<div class="form-group ms-small-s">
+								<base-input
+									:required="true"
+									:type="'text'"
+									:maxLength="25"
+									:label="$t('common.id')" 
+									:leftMessage="'95%'"
+									v-model="product.productCode"
+                  :messageValid="t('validate.empty', { field: t('module.inventory.productCode') })"
+									:class="{ 'is-valid': isValid && product.productCode == '' }"
+								></base-input>
+							</div>
+							<div class="form-group ms-big">
+								<base-combobox
+									widthOptionSelect="600px"
+									widthLabelCode="250px"
+									:options="optionCategoryIn.optionCategory"
+                  :value="'categoryID'"
+                  :header="'categoryName'"
+                  :label="$t('module.inventory.categoryName')"
+                  :labelCode="$t('module.inventory.categoryCode')"
+                  :labelName="$t('module.inventory.categoryName')"
+                  :headerCode = "'categoryCode'"
+                  v-model="product.categoryID"
+                  v-model:textField="product.categoryName"
+                  :addIcon="true"
+                  v-model:textCode="product.categoryCode"
+                  :handleAddIcon="BaseCategory.openModal"
+								></base-combobox>
+							</div>
+						</div>
+						<div class="form-item_input">
+							<div class="form-group ms-small">
+								<base-combobox
+                  :widthLabelCode="'170px'"
+                  :widthOptionSelect="'450px'"
+									:options="optionOriginIn.optionOrigin"
+                  :value="'originID'"
+                  :header="'originName'"
+                  :label="$t('module.inventory.originName')"
+                  :labelCode="$t('module.inventory.originCode')"
+                  :labelName="$t('module.inventory.originName')"
+                  :headerCode = "'originCode'"
+                  v-model="product.originID"
+                  v-model:textField="product.originName"
+                  :addIcon="true"
+                  v-model:textCode="product.originCode"
+                  :handleAddIcon="BaseOrigin.openModal"
+								></base-combobox>
+							</div>
+							<div class="form-group ms-big">
+								<base-combobox
+                  :widthLabelCode="'170px'"
+                  :widthOptionSelect="'450px'"
+									:options="optionTrademarkIn.optionTrademark"
+                  :value="'trademarkID'"
+                  :header="'trademarkName'"
+                  :label="$t('module.inventory.trademarkName')"
+                  :labelCode="$t('module.inventory.trademarkCode')"
+                  :labelName="$t('module.inventory.trademarkName')"
+                  :headerCode = "'trademarkCode'"
+                  v-model="product.trademarkID"
+                  v-model:textField="product.trademarkName"
+                  :addIcon="true"
+                  v-model:textCode="product.trademarkCode"
+                  :handleAddIcon="BaseTrademark.openModal"
+								></base-combobox>
+							</div>
+						</div>
+					</div>
+					<base-image v-model="product.avatar"></base-image>
+				</div>
+				<div class="divide-line"></div>
         <div class="form-item_input">
-          <button ref="focusLoopTop" class="focus-loop"></button>
-          <div class="form-group ms-small">
+          <div class="form-group ms-small-s">
+            <base-combobox
+              :options="[
+                { value: `1 ${$t('calendar.month')}`, header: `1 ${$t('calendar.month')}` },
+                { value: `2 ${$t('calendar.month')}`, header: `2 ${$t('calendar.month')}` },
+                { value: `3 ${$t('calendar.month')}`, header: `3 ${$t('calendar.month')}` },
+                { value: `6 ${$t('calendar.month')}`, header: `6 ${$t('calendar.month')}` },
+                { value: `9 ${$t('calendar.month')}`, header: `9 ${$t('calendar.month')}` },
+                { value: `1 ${$t('calendar.year')}`, header: `1 ${$t('calendar.year')}` },
+                { value: `2 ${$t('calendar.year')}`, header: `2 ${$t('calendar.year')}` },
+                { value: `3 ${$t('calendar.year')}`, header: `3 ${$t('calendar.year')}` },
+                { value: `6 ${$t('calendar.year')}`, header: `6 ${$t('calendar.year')}` },
+                { value: `9 ${$t('calendar.year')}`, header: `9 ${$t('calendar.year')}` },
+                { value: `12 ${$t('calendar.year')}`, header: `12 ${$t('calendar.year')}` },
+              ]"
+              :value="'value'"
+              :header="'header'"
+              :label="$t('module.inventory.warrantyPeriod')"
+              v-model="product.warrantyPeriod"
+            ></base-combobox>
+          </div>
+          <div class="form-group ms-small-s">
             <base-input
-              :focus="true"
-              :required="true"
               :type="'text'"
-              :maxLength="25"
-              :messageValid="t('validate.empty', { field: t('module.inventory.productCode') })"
-              :label="$t('common.id')" 
-              v-model="product.productCode"
-              :class="{ 'is-valid': isValid && product.productCode == '' }"
-              ref="inputFocus"
+              :label="$t('module.inventory.price')"
+              :isNumber="true"
+              v-model.number="product.price"
             ></base-input>
           </div>
-          <div class="form-group ms-big">
+          <div class="form-group ms-big ">
             <base-input
-              :required="true"
+              :type="'text'"
+              :label="$t('module.inventory.batteryLife')"
+              :maxLength="255"
+              v-model="product.batteryLife"
+            ></base-input>
+          </div>
+        </div>
+        <div class="form-item_input">
+          <div class="form-group">
+            <base-combobox
+              :widthLabelCode="'170px'"
+              :widthOptionSelect="'450px'"
+              :options="optionDepotIn.optionDepot"
+              :value="'depotID'"
+              :header="'depotName'"
+              :label="$t('module.inventory.depot_impact')"
+              :labelCode="$t('module.inventory.depotCode')"
+              :labelName="$t('module.inventory.depotName')"
+              :headerCode = "'depotCode'"
+              v-model="product.depotID"
+              v-model:textField="product.depotName"
+              :addIcon="true"
+              v-model:textCode="product.depotCode"
+              :handleAddIcon="BaseDepot.openModal"
+            ></base-combobox>
+          </div>
+          <div class="form-group">
+            <base-input
               :type="'text'"
               :maxLength="255"
-              :messageValid="t('validate.empty', { field: t('module.inventory.productName') })"
-              :label="$t('common.name')"
-              v-model="product.productName"
-              :class="{ 'is-valid': isValid && product.productName == '' }"
+              :label="$t('module.inventory.material')"
+              v-model="product.material"
             ></base-input>
           </div>
+          <div style="padding-left: 16px" class="form-group">
+            <label>{{ $t('common.gender') }}</label>
+            <div class="base-radio_item">
+              <base-radio
+                :label="$t('gender.male')"
+                :value="Gender.Male"
+                v-model.number="product.gender"
+              ></base-radio>
+              <base-radio
+                :label="$t('gender.female')"
+                :value="Gender.Female"
+                v-model.number="product.gender"
+              ></base-radio>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label>{{ $t('common.description') }}</label>
-          <textarea
-            class="input"
-            v-model="product.description"
-          ></textarea>
+        <div class="form-item_input">
+          <div class="form-group">
+            <label>{{ $t('common.description') }}</label>
+            <quill-editor 
+              v-model:content="product.description" 
+              contentType="html" 
+              theme="snow" 
+              toolbar="full"
+            >
+          </quill-editor>
+          </div>
         </div>
-        <div class="form-group ms-big">
-          <base-image v-model="product.avatar"></base-image>
-        </div>
-      </div>
-      <div class="form-action">
-        <div class="form-action_container">
+			</div>
+			<div class="form-action">
+				<div class="form-action_container">
           <div class="form-action_item">
-            <button @click="handleSaveData(true)" style="margin-right: 9px" class="btn modal-icon btn-form_cat" :content="$t('common.add_form') + ' (Ctrl + S)'">
+            <button @click="handleSaveData(true)" style="margin-right: 9px" class="btn modal-icon up btn-form_cat" :content="$t('common.add_form') + ' (Ctrl + S)'">
               {{ $t('common.add_form') }}
             </button>
-            <button @click="handleSaveData(false)" class="btn btn-success modal-icon btn-form_cat-them" :content="$t('common.add_form_and_add') + ' (Ctrl + Shift +  S)'">
+            <button @click="handleSaveData(false)" class="btn btn-success modal-icon up btn-form_cat-them" :content="$t('common.add_form_and_add') + ' (Ctrl + Shift +  S)'">
               {{ $t('common.add_form_and_add') }}
             </button>
           </div>
@@ -68,18 +225,47 @@
             </button>
           </div>
         </div>
-      </div>
-      <button ref="focusLoop" class="focus-loop"></button>
-    </div>
-  </div>
+			</div>
+			<button ref="focusLoop" class="focus-loop"></button>
+		</div>
+		<div @click="()=> {isShowFullModal = !isShowFullModal}" class="resize">
+			<div class="resize-icon"></div>
+		</div>
+		<teleport to="#app">
+			<base-modal-form v-if="BaseDepot.isShowModal">
+				<form-depot :Base="BaseDepot" :AddItem="AddDepot"></form-depot>
+			</base-modal-form>
+			<base-modal-form v-if="BaseCategory.isShowModal">
+				<form-category :Base="BaseCategory" :AddItem="AddCategory"></form-category>
+			</base-modal-form>
+			<base-modal-form v-if="BaseOrigin.isShowModal">
+				<form-origin :Base="BaseOrigin" :AddItem="AddOrigin"></form-origin>
+			</base-modal-form>
+			<base-modal-form v-if="BaseTrademark.isShowModal">
+				<form-trademark :Base="BaseTrademark" :AddItem="AddTrademark"></form-trademark>
+			</base-modal-form>
+		</teleport>
+	</div>
 </template>
 
 <script setup lang="ts">
-import { ActionTable, Product, ENotificationType, Grid, ModuleName, ServiceResponse } from '@/core/public_api';
-import { onUnmounted, onMounted, ref, onBeforeMount } from 'vue';
+import CategoryApi from '@/api/module/category';
+import DepotApi from '@/api/module/depot';
+import OriginApi from '@/api/module/origin';
+import TrademarkApi from '@/api/module/trademark';
+import { ActionTable, Product, ENotificationType, Grid, ModuleName, ServiceResponse, Gender } from '@/core/public_api';
+import { onUnmounted, onMounted, ref, onBeforeMount, reactive, watch, defineAsyncComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
-
+const FormDepot = defineAsyncComponent(()=> import('../depot/FormDepot.vue'));
+const FormOrigin = defineAsyncComponent(()=> import('../origin/FormOrigin.vue'));
+const FormTrademark = defineAsyncComponent(()=> import('../trademark/FormTrademark.vue'));
+const FormCategory = defineAsyncComponent(()=> import('../category/FormCategory.vue'));
 const { t } = useI18n();
+
+/** Biến lưu trạng thái mở full modal
+ *  Khắc Tiềm - 08.03.2023
+ */
+ const isShowFullModal = ref(false);
 
 /**
  * Props truyền vào với những Base từ bên component cha
@@ -87,7 +273,99 @@ const { t } = useI18n();
  */
 const props = defineProps({
   Base: { type: Grid, required: true },
+	optionDepotIn: { type: Object, required: true } ,
+	optionOriginIn: { type: Object, required: true } ,
+	optionTrademarkIn: { type: Object, required: true } ,
+	optionCategoryIn: { type: Object, required: true } ,
 })
+
+/** Dữ liệu dropdown 
+ *  Khắc Tiềm - 08.03.2023
+*/
+const apiDepot:DepotApi = new DepotApi();
+const BaseDepot:Grid = reactive(new Grid(ModuleName.Depot, apiDepot));
+BaseDepot.setStateForm(ActionTable.Add);
+function AddDepot(item: any){
+	props.optionDepotIn.addItem(item);
+	product.value.depotID = item.depotID;
+	product.value.depotCode = item.depotCode;
+	product.value.depotName = item.depotName;
+}
+
+/** Dữ liệu dropdown 
+ *  Khắc Tiềm - 08.03.2023
+*/
+const apiOrigin:OriginApi = new OriginApi();
+const BaseOrigin:Grid = reactive(new Grid(ModuleName.Origin, apiOrigin));
+BaseOrigin.setStateForm(ActionTable.Add);
+function AddOrigin(item: any){
+	props.optionOriginIn.addItem(item);
+	product.value.originID = item.originID;
+	product.value.originCode = item.originCode;
+	product.value.originName = item.originName;
+}
+
+/** Dữ liệu dropdown 
+ *  Khắc Tiềm - 08.03.2023
+*/
+const apiTrademark:TrademarkApi = new TrademarkApi();
+const BaseTrademark:Grid = reactive(new Grid(ModuleName.Trademark, apiTrademark));
+BaseTrademark.setStateForm(ActionTable.Add);
+function AddTrademark(item: any){
+	props.optionTrademarkIn.addItem(item);
+	product.value.trademarkID = item.trademarkID;
+	product.value.trademarkCode = item.trademarkCode;
+	product.value.trademarkName = item.trademarkName;
+}
+
+/** Dữ liệu dropdown 
+ *  Khắc Tiềm - 08.03.2023
+*/
+const apiCategory:CategoryApi = new CategoryApi();
+const BaseCategory:Grid = reactive(new Grid(ModuleName.Category, apiCategory));
+BaseCategory.setStateForm(ActionTable.Add);
+function AddCategory(item: any){
+	props.optionCategoryIn.addItem(item);
+	product.value.categoryID = item.categoryID;
+	product.value.categoryCode = item.categoryCode;
+	product.value.categoryName = item.categoryName;
+}
+
+/**
+ * Lắng nghe các sự thay đổi bật tắt modal để bật tắt sự kiện
+ */
+watch(BaseDepot, (newVal: Grid) => {
+	if(newVal.isShowModal){
+		unListenEvent();
+	}
+	else{
+		listenEvent();
+	}
+});
+watch(BaseOrigin, (newVal: Grid) => {
+	if(newVal.isShowModal){
+		unListenEvent();
+	}
+	else{
+		listenEvent();
+	}
+});
+watch(BaseTrademark, (newVal: Grid) => {
+	if(newVal.isShowModal){
+		unListenEvent();
+	}
+	else{
+		listenEvent();
+	}
+});
+watch(BaseCategory, (newVal: Grid) => {
+	if(newVal.isShowModal){
+		unListenEvent();
+	}
+	else{
+		listenEvent();
+	}
+});
 
 /**
  * Lưu trạng thái hiển thị validate
@@ -115,6 +393,10 @@ onBeforeMount(() => {
   if(props.Base.StateForm === ActionTable.Edit || props.Base.StateForm === ActionTable.Replication){
     product.value = {...props.Base.RecordEdit};
     productComparison.value = {...props.Base.RecordEdit};
+  }
+  else{
+    product.value.productCode = props.Base.RecordCode;
+    productComparison.value.productCode = props.Base.RecordCode;
   }
 })
 
@@ -275,21 +557,34 @@ onUnmounted(() =>{
 </script>
 
 <style scoped>
-.modal-body {
-  max-width: 500px !important;
-  width: 500px !important;
-  left: calc(50vw - 250px) !important;
-  height: auto !important;
-  top: 50vh !important;
-  transform: translateY(-50%) !important;
-  padding: 0 !important;
+@import "../../../../assets/css/formRight.css";
+
+::-webkit-scrollbar-track {
+	border-radius: 0;
+	direction: rtl;
 }
-textarea{
-  resize: none;
-  display: block;
-  padding: 9px;
-  font-size: 13px;
-  width: 100%;
+
+::-webkit-scrollbar-thumb {
+	border-radius: 0;
+	background: #B8BCC3;
+}
+::-webkit-scrollbar-thumb:hover {
+	border-radius: 0;
+	background: #808080;
+}
+::-webkit-scrollbar {
+	height: 10px; /* height of horizontal scrollbar ← You're missing this */
+	width: 8px;
+}
+.modal-body {
+  width: 800px;
   height: 100%;
+  margin: 0;
+  left: calc(100%);
+  top: 0;
+  transform: none;
+  padding: 0 16px;
+  position: relative;
+  transition: all ease 0.15s;
 }
 </style>

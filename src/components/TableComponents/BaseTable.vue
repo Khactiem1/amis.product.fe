@@ -62,6 +62,7 @@
                 <span class="data-table-bind" :class="`${BaseComponent.lineClamp}`">
                   <span v-if="row[BaseComponent.actionTable.fieldCode] === row[col.Field] && row.bindHTMLChild" v-html="row.bindHTMLChild + row.bindHTMLChild"></span>
                   {{ formatData(col.TypeFormat, row[col.Field]) }}
+                  <span v-if="col.TypeFormat.HTML === true" v-html="row[col.Field]" class="data-table-bind" :class="`${BaseComponent.lineClamp}`"></span>
                 </span>
                 <div v-if="col.TypeFormat.IsImage === true" class="image-table">
                   <img v-bind:src="row[col.Field] ? row[col.Field].includes('/Images/') ? environment.IMAGE_API + row[col.Field] : '' + row[col.Field] : ''" alt="">
@@ -251,6 +252,8 @@ export default defineComponent({
       : typeFormat.CheckBox === true
       ? ''
       : typeFormat.IsImage === true
+      ? '' 
+      : typeFormat.HTML === true
       ? '' 
       :typeFormat.FormatServiceResponseI18n === true
       ? BaseComponent.value.formatServiceResponse(data, BaseComponent.value.ModuleI18n)

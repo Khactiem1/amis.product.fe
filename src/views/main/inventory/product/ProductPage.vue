@@ -47,7 +47,33 @@
     </base-table>
 		<teleport to="#app">
       <base-modal-form v-if="Base.isShowModal">
-        <form-product :Base="Base">
+        <form-product 
+          :Base="Base"
+          :optionDepotIn="{
+            optionDepot,
+            addItem: (item: any)=> {
+                optionDepot = [item, ...optionDepot]
+              }
+            }" 
+          :optionOriginIn="{
+            optionOrigin,
+            addItem: (item: any)=> {
+                optionOrigin = [item, ...optionOrigin]
+              }
+            }" 
+          :optionTrademarkIn="{
+            optionTrademark,
+            addItem: (item: any)=> {
+              optionTrademark = [item, ...optionTrademark]
+              }
+            }" 
+          :optionCategoryIn="{
+            optionCategory,
+            addItem: (item: any)=> {
+              optionCategory = [item, ...optionCategory]
+              }
+            }" 
+        >
         </form-product>
       </base-modal-form>
       <base-modal-form v-if="Base.isShowDialog">
@@ -64,10 +90,14 @@
 
 <script setup lang="ts">
 import { Grid, ModuleName, ActionTable } from '@/core/public_api';
-import { reactive, onBeforeMount, onUnmounted, onMounted, defineAsyncComponent } from 'vue';
+import { reactive, onBeforeMount, onUnmounted, onMounted, defineAsyncComponent, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { environment } from '@/environments/environment.prod';
 import ProductApi from '@/api/module/product';
+import DepotApi from '@/api/module/depot';
+import CategoryApi from '@/api/module/category';
+import TrademarkApi from '@/api/module/trademark';
+import OriginApi from '@/api/module/origin';
 const FormProduct = defineAsyncComponent(() => import('./FormProduct.vue'))
 
 const { t } = useI18n();
@@ -79,6 +109,12 @@ const api:ProductApi = new ProductApi();
 
 /** Sử dụng base thư viện Grid đã viết */
 const Base:Grid = reactive(new Grid(ModuleName.Product, api));
+
+/** Dữ liệu dropdown*/
+const optionOrigin: any = ref([]);
+const optionTrademark: any = ref([]);
+const optionCategory: any = ref([]);
+const optionDepot: any = ref([]);
 
 /**
  * Trước khi mounted sẽ load dữ liệu 1 lần
@@ -94,9 +130,10 @@ onBeforeMount(() => {
  * NK Tiềm 08.03.2023
  */
  function loadDropDown(){
-  // Base.apiService.callApi(new UnitCalculationApi().getDropdown, null, async (response: any) => { optionUnit.value = response;});
-  // Base.apiService.callApi(new DepotApi().getDropdown, null, async (response: any) => { optionDepot.value = response;});
-  // Base.apiService.callApi(new CommodityGroupApi().getDropdown, null, async (response: any) => { optionCommodity.value = Base.listToTree(response, 'commodityGroupID');});
+  Base.apiService.callApi(new OriginApi().getDropdown, null, async (response: any) => { optionOrigin.value = response;});
+  Base.apiService.callApi(new TrademarkApi().getDropdown, null, async (response: any) => { optionTrademark.value = response;});
+  Base.apiService.callApi(new CategoryApi().getDropdown, null, async (response: any) => { optionCategory.value = response;});
+  Base.apiService.callApi(new DepotApi().getDropdown, null, async (response: any) => { optionDepot.value = response;});
 }
 
 /**

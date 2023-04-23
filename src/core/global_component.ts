@@ -1,4 +1,5 @@
 import type{ App } from 'vue';
+import { QuillEditor } from '@vueup/vue-quill';
 import { 
   BaseCalendar, BaseCheckbox, BaseCombobox, BaseInput, BaseRadio, BaseModalForm, BaseImage,
   BaseFormKeySearch, BaseSetting, BaseTable, BaseImportExcel, BaseFormExcelResult,
@@ -12,6 +13,7 @@ export const registerGlobalComponents = (app: App): void => {
   app.component('base-radio', BaseRadio);
   app.component('base-modal-form', BaseModalForm);
   app.component('base-image', BaseImage);
+  app.component('QuillEditor', QuillEditor)
 
   app.component('base-form-key-search', BaseFormKeySearch);
   app.component('base-setting', BaseSetting);

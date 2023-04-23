@@ -194,7 +194,7 @@ textarea{
   .form-hidden_content.active-service .form-item_input .form-group{
     width: calc(100% / 3);
   }
-  .form-hidden_content .form-item_input .form-group + .form-group{ 
+  .form-hidden_content .form-item_input .form-group:not(:first-child) + .form-group{ 
     padding-left: 8px;
   }
   .info-input_icon{
