@@ -98,7 +98,7 @@ import DepotApi from '@/api/module/depot';
 import CategoryApi from '@/api/module/category';
 import TrademarkApi from '@/api/module/trademark';
 import OriginApi from '@/api/module/origin';
-const FormProduct = defineAsyncComponent(() => import('./FormProduct.vue'))
+const FormProduct = defineAsyncComponent(() => import('./FormProduct.vue'));
 
 const { t } = useI18n();
 /**

@@ -60,14 +60,14 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" extends="">
 import { Grid, ModuleName, ActionTable } from '@/core/public_api';
 import { reactive , ref, onBeforeMount, onUnmounted, onMounted, defineAsyncComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { environment } from '@/environments/environment.prod';
 import EmployeeApi from '@/api/module/employee';
 import BranchApi from '@/api/module/branch';
-const FormEmployee = defineAsyncComponent(() => import('./FormEmployee.vue'))
+const FormEmployee = defineAsyncComponent(() => import('./FormEmployee.vue'));
 
 const { t } = useI18n();
 /**

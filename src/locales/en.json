@@ -179,8 +179,8 @@
       "fixed_phone_small": "Fixed phone",
       "branch_small": "branch",
       "password": "Password",
-      "password_confirm": "E.Xác nhận mật khẩu",
-      "password_new": "E.Mật khẩu mới"
+      "password_confirm": "Confirm password",
+      "password_new": "A new password"
     },
     "inventory": {
       "goods": "Goods",
@@ -253,18 +253,18 @@
       "tax_reduction": "Tax reduction",
       "implicit_information": "Implicit information",
       "depot_impact": "Depot implicit",
-      "categoryCode": "E.Mã danh mục",
-      "categoryName": "E.Tên danh mục",
-      "originCode": "E.Mã xuất xứ",
-      "originName": "E.Tên xuất xứ",
-      "trademarkCode": "E.Mã thương hiệu",
-      "trademarkName": "E.Tên thương hiệu",
-      "productCode": "E.Mã sản phẩm",
-      "productName": "E.Tên sản phẩm",
-      "price": "E.Giá thành",
-      "category": "E.Danh mục",
-      "product": "E.Sản phẩm",
-      "trademark": "E.Thương hiệu",
+      "categoryCode": "Category code",
+      "categoryName": "Name list",
+      "originCode": "Code of Origin",
+      "originName": "Name of origin",
+      "trademarkCode": "Trademark code",
+      "trademarkName": "Trademark name",
+      "productCode": "Product code",
+      "productName": "Product name",
+      "price": "Price",
+      "category": "Category",
+      "product": "Product",
+      "trademark": "Trademark",
       "gender": "Gender",
       "material": "Material",
       "batteryLife": "Battery life"
@@ -331,12 +331,12 @@
   },
   "login": {
     "session_has_expired": "Your session has expired, please login again.",
-    "active_fail": "E.Tài khoản đã ngừng sử dụng.",
-    "is_valid_user": "E.Tài khoản hoặc mật khẩu không chính xác.",
-    "is_valid_password": "E.Mật khẩu không chính xác.",
-    "logout": "E.Đăng xuất",
-    "change_password": "E.Đổi mật khẩu",
-    "change_password_success": "E.Đổi mật khẩu thành công",
-    "not_access_password": "E.Mật khẩu xác nhận không khớp"
+    "active_fail": "Account has been discontinued.",
+    "is_valid_user": "Incorrect account or password.",
+    "is_valid_password": "Incorrect password.",
+    "logout": "Logout",
+    "change_password": "Change password",
+    "change_password_success": "Change password successfully",
+    "not_access_password": "Confirmation password does not match"
   }
 }

@@ -262,7 +262,8 @@ const FormTrademark = defineAsyncComponent(()=> import('../trademark/FormTradema
 const FormCategory = defineAsyncComponent(()=> import('../category/FormCategory.vue'));
 const { t } = useI18n();
 
-/** Biến lưu trạng thái mở full modal
+/** 
+ *  Biến lưu trạng thái mở full modal
  *  Khắc Tiềm - 08.03.2023
  */
  const isShowFullModal = ref(false);
