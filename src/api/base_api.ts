@@ -110,6 +110,14 @@ export default class BaseApi{
   }
 
   /**
+   * API xoá nhiều bản ghi
+   * Khắc Tiềm - 08.03.2023
+   */
+  public actionMultipleApi = (form: any) => {
+    return axiosAPI.post(`/${this.Module}/ActionMultipleApi?action=${form.action}`, form.listID);
+  }
+
+  /**
    * API Active toggle sử dụng
    * Khắc Tiềm - 08.03.2023
    */

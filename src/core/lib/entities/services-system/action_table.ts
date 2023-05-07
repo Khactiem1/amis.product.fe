@@ -22,6 +22,14 @@ export class ActionTable {
 
   /** Sử dụng */
   public static use: string = 'use';
+
+  /** Cập nhật trạng thái đơn hàng */
+  public static ViewDetail: string = 'viewDetail';
+  public static WaitConfirm: string = 'waitConfirm';
+  public static Confirm: string = 'confirm';
+  public static Delivery: string = 'deliveryOrder';
+  public static Delivered: string = 'delivered';
+  public static Destroy: string = 'destroy';
 }
 
 /** 
@@ -242,6 +250,12 @@ export class TypeFormat {
 
   /** Kiểu dịch vụ */
   public DepreciatedTax?: boolean = false;
+
+  /** Kiểu dịch vụ */
+  public TypeCheckout?: boolean = false;
+
+  /** Kiểu dịch vụ */
+  public Status?: boolean = false;
 
   /** Là giới tính ? */
   public IsGender?: boolean = false;

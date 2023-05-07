@@ -158,4 +158,22 @@ export class UtilsComponents{
     const regex = /(03|02|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/; //eslint-disable-line
     return regex.test(sdt);
   }
+
+  public formatDateDDMMYYYYHHMMSS = (dateString: string = "") => {
+    if(dateString){
+      const date = new Date(dateString);
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const day = date.getDate().toString() ? date.getDate().toString() : "";
+      const hours = date.getHours();
+      const minutes = date.getMinutes();
+      const seconds = date.getSeconds();
+
+      const formattedDate = `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`;
+      const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+      return `${formattedDate} ${formattedTime}`;
+    }
+    return '';
+  }
 }

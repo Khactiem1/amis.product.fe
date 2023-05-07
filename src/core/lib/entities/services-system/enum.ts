@@ -123,3 +123,51 @@ export enum StatusCode {
   /** Không có quyền */
   Authentication = 401,
 }
+
+/**
+ * StatusOrder
+ * Khắc Tiềm - 08.03.2023
+ */
+export enum StatusOrder {
+  /// <summary>
+  /// Chờ xác nhận
+  /// </summary>
+  WaitConfirm = 0,
+
+  /// <summary>
+  /// Đã xác nhận
+  /// </summary>
+  Confirm = 1,
+
+  /// <summary>
+  /// Đang giao hàng
+  /// </summary>
+  Delivery = 2,
+
+  /// <summary>
+  /// Đã giao hàng
+  /// </summary>
+  Delivered = 3,
+
+  /// <summary>
+  /// Đơn bị huỷ
+  /// </summary>
+  Destroy = 4,
+}
+
+/// <summary>
+/// Kiểu thanh toán
+/// </summary>
+/// Create by: Nguyễn Khắc Tiềm (21/09/2022)
+export enum TypeCheckout
+{
+  /// <summary>
+  /// Chuyển khoản trực tiếp
+  /// </summary>
+  Live = 0,
+
+  /// <summary>
+  /// Kiểm tra hàng và thanh toán
+  /// </summary>
+  Check = 1,
+}

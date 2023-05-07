@@ -56,6 +56,15 @@ const router: any = [
   },
   {
     /** 
+     * Trang order
+     * Khắc Tiềm - 08.03.2023
+     * */
+    path: '/order',
+    component: () => import('../../views/main/order/OrderPage.vue'),
+    meta: { title: 'page.order' }
+  },
+  {
+    /** 
      * Trang không tồn tại 
      * Khắc Tiềm - 08.03.2023
      * */

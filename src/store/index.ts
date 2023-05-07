@@ -7,6 +7,7 @@ import origin from './module/origin';
 import trademark from './module/trademark';
 import product from './module/product';
 import category from './module/category';
+import order from './module/order';
 
 const store = createStore({
   modules: {
@@ -18,6 +19,7 @@ const store = createStore({
     trademark,
     product,
     category,
+    order,
   },
 });
 

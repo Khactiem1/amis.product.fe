@@ -1,7 +1,7 @@
 import { Utils } from './utils';
 import { computed } from "vue";
 import { environment } from '@/environments/environment.prod';
-import { ENotificationType, ApiService, InfoTable, StorageService, EntitySystem, IdbDataTable, ActionTable, Header, ServiceResponse } from '@/core/public_api';
+import { ENotificationType, ApiService, InfoTable, StorageService, EntitySystem, IdbDataTable, ActionTable, Header, ServiceResponse, StatusOrder } from '@/core/public_api';
 import i18n from '@/locales/i18n';
 import type BaseApi from '@/api/base_api';
 
@@ -382,5 +382,13 @@ export class Grid extends Utils{
     else{
       return ''
     }
+  }
+
+  public formatStatus = (status: StatusOrder) => {
+    return status === StatusOrder.WaitConfirm ? i18n.global.t('module.order.WaitConfirm') :
+    status === StatusOrder.Confirm ? i18n.global.t('module.order.Confirm') :
+    status === StatusOrder.Delivery ? i18n.global.t('module.order.Delivery') :
+    status === StatusOrder.Delivered ? i18n.global.t('module.order.Delivered') :
+    status === StatusOrder.Destroy ? i18n.global.t('module.order.Destroy') : ""
   }
 }

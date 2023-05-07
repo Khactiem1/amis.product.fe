@@ -26,7 +26,8 @@
     "depot": "Nhà kho",
     "unitCalculation": "Đơn vị tính",
     "commodityGroup": "Nhóm vật tư, hàng hoá, dịch vụ",
-    "construction_page": "Tính năng được xây dựng"
+    "construction_page": "Tính năng được xây dựng",
+    "order": "Đơn hàng"
   },
   "ui": {
     "setting_display": "Thiết lập hiển thị",
@@ -51,7 +52,12 @@
     "add": "Thêm",
     "edit": "Sửa",
     "delete": "Xoá",
-    "use": "Sử dụng",
+    "viewDetail": "Xem",
+    "waitConfirm": "Chờ xác nhận",
+    "deliveryOrder": "Đang vận chuyển",
+    "confirm": "Xác nhận đơn",
+    "delivered": "Đã vận chuyển",
+    "destroy": "Huỷ đơn hàng",
     "replication": "Nhân bản",
     "phoneNumber" : "Số điện thoại",
     "address" : "Địa chỉ",
@@ -114,6 +120,7 @@
     "data": "Dữ liệu",
     "description": "Mô tả",
     "delivery": "Địa chỉ",
+    "note": "Ghi chú",
     "illegal": "Không hợp lệ",
     "line_number": "Dòng số",
     "detailed_error": "Chi tiết lỗi",
@@ -138,6 +145,31 @@
     "depreciatedTaxStatus": "Trạng thái tra cứu giảm thuế theo nghị quyết 43/2022/QH15"
   },
   "module": {
+    "order": {
+      "userName": "Tên khách hàng",
+      "phoneNumber": "Số điện thoại",
+      "email": "Địa chỉ email",
+      "province": "Tỉnh thành phố",
+      "district": "Quận huyện",
+      "ward": "Phường xã",
+      "address": "Địa chỉ chi tiết",
+      "description": "Ghi chú đơn hàng",
+      "typeCheckout": "Phương thức thanh toán",
+      "Live": "Thanh toán trực tiếp",
+      "Check": "Kiểm hàng thanh toán",
+      "WaitConfirm": "Chờ xác nhận",
+      "Confirm": "Xác nhận",
+      "Delivery": "Đang vận chuyển",
+      "Delivered": "Đã vận chuyển",
+      "Destroy": "Huỷ đơn hàng",
+      "quantity": "Số lượng",
+      "priceOrder": "Giá khi bán ra",
+      "total": "Tổng",
+      "totalPrice": "Tổng tiền",
+      "totalQuantity": "Tổng số lượng",
+      "addStatus": "Thêm trạng thái",
+      "statusOrder": "Trạng thái đơn hàng"
+    },
     "cash": {
       "employee": "Nhân viên",
       "employee_small": "nhân viên",
@@ -325,8 +357,11 @@
       "wanning_delete_all": "Bạn có thực sự muốn xoá toàn bộ bản ghi được chọn?",
       "delete_success": "Bản ghi đã bị xoá.",
       "delete_success_all": "{count} bản ghi đã bị xoá.",
+      "success_all": "Thực hiện thành công.",
       "statue_of_liberty": "Đang chọn",
-      "question_wanning_delete": "Bạn có thực sự muốn xoá {module} <{code}> không?"
+      "question_wanning_delete": "Bạn có thực sự muốn xoá {module} <{code}> không?",
+      "action_all": "Tương tác với tất cả bản ghi được chọn?",
+      "is_valid": "Hãy điền đầy đủ thông tin"
     }
   },
   "login": {

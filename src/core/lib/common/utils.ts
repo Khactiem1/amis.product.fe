@@ -17,6 +17,9 @@ export class Utils extends UtilsComponents{
   /** Mã sinh tự động */
   public RecordCode: any;
 
+  /** Mã sinh tự động */
+  public RecordID: any;
+
   /** Module đang hoạt động kế thừa lớp */
   public Module: string;
 

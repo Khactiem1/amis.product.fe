@@ -22,7 +22,7 @@
               >
               <!-- Phần render các cột head -->
               <template #item="{ element, index }">
-                <th :class="`${index === columnCustom.length - 1 ? 'header-content-end' : ''} ${element.TypeFormat.FixFirstColumn === true || (!BaseComponent.OptionCheck && index === 0) ? 'fix' : ''} ${BaseComponent.columnFix[index] ? `z3`: ``}`" 
+                <th :class="`${index === columnCustom.length - 1 ? 'header-content-end' : ''} ${element.TypeFormat.FixFirstColumn === true || (!BaseComponent.OptionCheck && index === 0) ? 'fix' : ''} ${BaseComponent.columnFix[index] ? `z3`: ``} ${BaseComponent.OptionCheck === false ? 'check-false' : ''}`" 
                 :style="{ 'min-width': `${element.Width}px`, width: `${element.Width}px`, 'max-width': `${element.Width}px`, 'left': `${BaseComponent.columnFix[index] ? `${BaseComponent.columnFix[index].Width}px` : ''}`}">
                   <span style="display: flex;" :class="`${element.TypeFormat.TextAlign}`" @click="handleSetSortColumn(element.FieldSelect)">
                     <span style="flex: 1; display: inline-block;">{{ element.HeaderCustom && element.HeaderCustom.trim() !== '' ? element.HeaderCustom : $t(`${element.Header}`) }}</span>
@@ -157,7 +157,7 @@
 
 <script lang="ts">
 import { BaseTableEmpty, BaseTableLoader, BaseTableFilter, BaseTableListAction, BasePaging } from "@/core/public_component";
-import { UtilsComponents, Gender, TypeFormat, Nature, DepreciatedTax } from "@/core/public_api";
+import { UtilsComponents, Gender, TypeFormat, Nature, DepreciatedTax, StatusOrder, TypeCheckout } from "@/core/public_api";
 import { environment } from '@/environments/environment.prod';
 import { watch, ref, toRefs, computed, defineComponent, type PropType } from "vue";
 import { useStore } from "vuex";
@@ -249,6 +249,10 @@ export default defineComponent({
       ? formatNature(data)
       : typeFormat.DepreciatedTax === true
       ? formatDepreciatedTax(data)
+      : typeFormat.TypeCheckout === true
+      ? formatTypeCheckout(data)
+      : typeFormat.Status === true
+      ? formatStatus(data)
       : typeFormat.CheckBox === true
       ? ''
       : typeFormat.IsImage === true
@@ -258,6 +262,28 @@ export default defineComponent({
       :typeFormat.FormatServiceResponseI18n === true
       ? BaseComponent.value.formatServiceResponse(data, BaseComponent.value.ModuleI18n)
       :data
+    }
+
+    function formatStatus(data: number){
+      if(data == StatusOrder.WaitConfirm){
+        return t('module.order.WaitConfirm');
+      }else if(data == StatusOrder.Confirm){
+        return t('module.order.Confirm');
+      }else if(data == StatusOrder.Delivery){
+        return t('module.order.Delivery');
+      }else if(data == StatusOrder.Delivered){
+        return t('module.order.Delivered');
+      }else if(data == StatusOrder.Destroy){
+        return t('module.order.Destroy');
+      }
+    }
+
+    function formatTypeCheckout(data: number){
+      if(data == TypeCheckout.Live){
+        return t('module.order.Live');
+      }else if(data == TypeCheckout.Check){
+        return t('module.order.Check');
+      }
     }
     
     /**
@@ -663,7 +689,7 @@ tbody tr.active .z3,
   position: absolute;
   background-color: var(--while__color);
 }
-.table .thead-light th.fix:first-child,
+.table .thead-light th.fix:first-child:not(.check-false),
 .table tbody th:first-child,
 .table tbody td:first-child {
   left: 16px;

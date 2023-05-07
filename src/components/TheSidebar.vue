@@ -73,17 +73,17 @@
           {{ $t('page.sell') }}
         </div>
       </router-link>
-      <!-- <a class="menu-sidebar_item dashboard-page">
+      <router-link to="/order" class="menu-sidebar_item nhanvien-page">
         <div
-          style="background-position: -30px -1628px"
+        style="background-position: -73px -1628px"
           class="menu-sidebar_icon"
         ></div>
         <div v-if="showSidebar" class="menu-sidebar_text">{{ $t('page.manage_invoices') }}</div>
         <div v-if="!showSidebar" class="menu-sidebar_item-info">
           {{ $t('page.manage_invoices') }}
         </div>
-      </a>
-      <a class="menu-sidebar_item nhanvien-page">
+      </router-link>
+      <!-- <a class="menu-sidebar_item nhanvien-page">
         <div
           style="background-position: -73px -1628px"
           class="menu-sidebar_icon"

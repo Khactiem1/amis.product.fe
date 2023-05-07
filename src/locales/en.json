@@ -26,7 +26,8 @@
     "depot": "Depot",
     "unitCalculation": "Unit calculation",
     "commodityGroup": "Group of materials, goods and services",
-    "construction_page": "Feature built"
+    "construction_page": "Feature built",
+    "order": "Order"
   },
   "ui": {
     "setting_display": "Setting display",
@@ -52,6 +53,13 @@
     "edit": "Edit",
     "delete": "Delete",
     "use": "Use",
+    "note": "Note",
+    "viewDetail": "E.Xem",
+    "waitConfirm": "E.Chờ xác nhận",
+    "deliveryOrder": "E.Đang vận chuyển",
+    "confirm": "E.Xác nhận đơn",
+    "delivered": "E.Đã vận chuyển",
+    "destroy": "E.Huỷ đơn hàng",
     "replication": "Replication",
     "phoneNumber" : "Phone Number",
     "address" : "Address",
@@ -138,6 +146,31 @@
     "depreciatedTaxStatus": "Tax reduction search status according to resolution 43/2022/QH15"
   },
   "module": {
+    "order": {
+      "userName": "E.Tên khách hàng",
+      "phoneNumber": "E.Số điện thoại",
+      "email": "E.Địa chỉ email",
+      "province": "E.Tỉnh thành phố",
+      "district": "E.Quận huyện",
+      "ward": "E.Phường xã",
+      "address": "E.Địa chỉ chi tiết",
+      "description": "E.Ghi chú đơn hàng",
+      "typeCheckout": "E.Phương thức thanh toán",
+      "Live": "E.Thanh toán trực tiếp",
+      "Check": "E.Kiểm hàng thanh toán",
+      "WaitConfirm": "E.Chờ xác nhận",
+      "Confirm": "E.Xác nhận",
+      "Delivery": "E.Đang vận chuyển",
+      "Delivered": "E.Đã vận chuyển",
+      "Destroy": "E.Huỷ đơn hàng",
+      "quantity": "E.Số lượng",
+      "priceOrder": "E.Giá khi bán ra",
+      "total": "E.Tổng",
+      "totalPrice": "E.Tổng tiền",
+      "totalQuantity": "E.Tổng số lượng",
+      "addStatus": "E.Thêm trạng thái",
+      "statusOrder": "E.Trạng thái đơn hàng"
+    },
     "cash": {
       "employee": "Employee",
       "employee_small": "employee",
@@ -325,8 +358,11 @@
       "wanning_delete_all": "Do you really want to delete the entire selected record?",
       "delete_success": "Record has been deleted.",
       "delete_success_all": "{count} record has been deleted.",
+      "success_all": "E.Thực hiện thành công.",
       "statue_of_liberty": "Statue of Liberty",
-      "question_wanning_delete": "Do you really want to remove {module} <{code}>?"
+      "question_wanning_delete": "Do you really want to remove {module} <{code}>?",
+      "action_all": "E.Tương tác với tất cả bản ghi được chọn?",
+      "is_valid": "E.Hãy điền đầy đủ thông tin"
     }
   },
   "login": {
