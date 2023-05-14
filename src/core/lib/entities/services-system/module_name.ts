@@ -16,4 +16,5 @@ export class ModuleName {
 
   /** Cart */
   public static Cart: string = 'order';
+  public static Coupon: string = 'coupon';
 }

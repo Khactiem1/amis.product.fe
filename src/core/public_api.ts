@@ -39,6 +39,7 @@ export * from './lib/entities/inventory/trademark';
 // Cart
 export * from './lib/entities/cart/cart';
 export * from './lib/entities/cart/order';
+export * from './lib/entities/cart/coupon';
 
 /**
  * services

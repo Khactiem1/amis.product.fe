@@ -83,6 +83,16 @@
           {{ $t('page.manage_invoices') }}
         </div>
       </router-link>
+      <router-link to="/coupon" class="menu-sidebar_item">
+        <div
+          style="background-position: -117px -1628px"
+          class="menu-sidebar_icon"
+        ></div>
+        <div v-if="showSidebar" class="menu-sidebar_text">{{ $t('page.coupon') }}</div>
+        <div v-if="!showSidebar" class="menu-sidebar_item-info">
+          {{ $t('page.coupon') }}
+        </div>
+      </router-link>
       <!-- <a class="menu-sidebar_item nhanvien-page">
         <div
           style="background-position: -73px -1628px"

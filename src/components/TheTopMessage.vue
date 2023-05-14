@@ -164,6 +164,8 @@ export default defineComponent({
   background: var(--url__icon) no-repeat;
   width: 20px;
 	height: 20px;
+  min-width: 20px;
+	min-height: 20px;
   position: relative;
 }
 .top-message_icon-content{

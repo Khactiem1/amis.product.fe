@@ -25,9 +25,13 @@
           </base-table>
           <div class="status-order">
             <p style="margin-top: 12px;" class="info-order">
+              {{ $t('module.order.totalQuantity') }}: {{ quantity }} {{ $t('page.product') }}
+              <br>
               {{ $t('module.order.totalPrice') }}: {{ Base.Comma(totalPrice) }} đ
               <br>
-              {{ $t('module.order.totalQuantity') }}: {{ quantity }}
+              {{ $t('module.order.coupon') }}: {{ orderDetail.couponCode }} ({{ orderDetail.percent }}%) (-{{ Base.Comma((totalPrice * (orderDetail.percent / 100))) }} đ)
+              <br>
+              {{ $t('module.order.intoMoney') }}: {{ Base.Comma(totalPrice - (totalPrice * (orderDetail.percent / 100))) }} đ
             </p>
             <div class="status-delivery">
               <p style="color: var(--primary__color);" class="info-order-status">
@@ -66,7 +70,6 @@ const { t } = useI18n();
  * Khắc Tiềm 13-03-2023
  */
  const api:CartApi = new CartApi();
- 
  
 /**
  * Props truyền vào với những Base từ bên component cha

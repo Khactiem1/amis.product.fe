@@ -8,6 +8,7 @@ import trademark from './module/trademark';
 import product from './module/product';
 import category from './module/category';
 import order from './module/order';
+import coupon from './module/coupon';
 
 const store = createStore({
   modules: {
@@ -20,6 +21,7 @@ const store = createStore({
     product,
     category,
     order,
+    coupon,
   },
 });
 

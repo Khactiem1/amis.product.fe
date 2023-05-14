@@ -65,6 +65,15 @@ const router: any = [
   },
   {
     /** 
+     * Trang order
+     * Khắc Tiềm - 08.03.2023
+     * */
+    path: '/coupon',
+    component: () => import('../../views/main/coupon/CouponPage.vue'),
+    meta: { title: 'page.coupon' }
+  },
+  {
+    /** 
      * Trang không tồn tại 
      * Khắc Tiềm - 08.03.2023
      * */
