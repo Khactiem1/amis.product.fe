@@ -12,7 +12,7 @@
               ></div>
             </div>
           </div>
-          <p class="info-order">
+          <p class="info-order info-order-header">
             {{ $t('page.order') }}: {{ orderDetail.userName }} - {{ orderDetail.phoneNumber }} - {{ orderDetail.email }} - {{ Base.formatDateDDMMYYYYHHMMSS(orderDetail.modifiedDate + '') }}
             <br>
             {{ $t('common.delivery') }}: {{ orderDetail.address }} -  {{ orderDetail.ward }} -  {{ orderDetail.district }} -  {{ orderDetail.province }}
@@ -24,15 +24,6 @@
           <base-table :BaseComponent="BaseComponent">
           </base-table>
           <div class="status-order">
-            <p style="margin-top: 12px;" class="info-order">
-              {{ $t('module.order.totalQuantity') }}: {{ quantity }} {{ $t('page.product') }}
-              <br>
-              {{ $t('module.order.totalPrice') }}: {{ Base.Comma(totalPrice) }} đ
-              <br>
-              {{ $t('module.order.coupon') }}: {{ orderDetail.couponCode }} ({{ orderDetail.percent }}%) (-{{ Base.Comma((totalPrice * (orderDetail.percent / 100))) }} đ)
-              <br>
-              {{ $t('module.order.intoMoney') }}: {{ Base.Comma(totalPrice - (totalPrice * (orderDetail.percent / 100))) }} đ
-            </p>
             <div class="status-delivery">
               <p style="color: var(--primary__color);" class="info-order-status">
                 * {{ $t('module.order.statusOrder') }}:
@@ -40,7 +31,7 @@
               <p v-for="(item, index) in statusList" :key="index" class="info-order-status">
                 {{ item.Comment }} ({{ Base.formatDateDDMMYYYYHHMMSS(item.CreatedDate + '') }})
               </p>
-              <div style="display: flex; justify-content: end; margin-top: 12px;">
+              <div style="display: flex; margin-top: 12px;">
                 <base-input
                   style="width: 340px;"
                   :type="'text'"
@@ -52,6 +43,13 @@
                 </button>
               </div>
             </div>
+            <p style="margin-top: 12px;" class="info-order">
+              <p><span>{{ $t('module.order.totalQuantity') }}:</span> {{ quantity }} {{ $t('page.product') }}</p>
+              <p><span>{{ $t('module.order.totalPrice') }}:</span> {{ Base.Comma(totalPrice) }} đ</p>
+              <p><span>{{ $t('module.order.coupon') }}:</span> {{ orderDetail.couponCode }} ({{ orderDetail.percent }}%) (-{{ Base.Comma((totalPrice * (orderDetail.percent / 100))) }} đ)</p>
+              <div class="hr"></div>
+              <p><span>{{ $t('module.order.intoMoney') }}:</span> {{ Base.Comma(totalPrice - (totalPrice * (orderDetail.percent / 100))) }} đ</p>
+            </p>
           </div>
         </div>
       </div>
@@ -245,16 +243,15 @@ h2{
 }
 .info-order{
   color: var(--text__color);
-  padding: 0 16px 8px 25px;
   font-family: 'notosans-bold' !important;
 }
 .info-order-status{
   color: var(--text__color);
   font-family: 'notosans-bold' !important;
-  text-align: right;
 }
 .status-order{
   display: flex;
+  margin: 0 18px;
   flex-grow: 1;
   justify-content: space-between;
 }
@@ -279,10 +276,26 @@ h2{
 }
 .status-delivery{
   width: 800px;
-  margin-right: 25px;
-  text-align: right;
+  margin-top: 12px;
   overflow: auto;
-  padding-right: 12px;
   position: relative;
+}
+.info-order-header{
+  margin-left: 18px;
+  margin-bottom: 12px;
+}
+.info-order span{
+  width: 180px;
+  display: inline-block;
+}
+.info-order p {
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+.hr{
+  width: 100%;
+  height: 1px;
+  background-color: #808080;
+  margin: 3px 0;
 }
 </style>
